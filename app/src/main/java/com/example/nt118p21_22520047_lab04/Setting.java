@@ -2,45 +2,65 @@ package com.example.nt118p21_22520047_lab04;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
-import android.view.View;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.content.Intent;
+import androidx.preference.PreferenceFragmentCompat;
+import androidx.preference.CheckBoxPreference;
+import androidx.preference.PreferenceManager;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
+import android.widget.Button;
 
-public class LearnPreferenceLayout extends AppCompatActivity {
+public class Setting extends AppCompatActivity {
 
-    LinearLayout layoutMain;
-    Button btnStartSetting;
+    Button btnStatus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_learnpreferencelayout);
+        setContentView(R.layout.activity_setting);
 
-        layoutMain = findViewById(R.id.layoutMain);
-        btnStartSetting = findViewById(R.id.btnStartSetting);
+        btnStatus = findViewById(R.id.btnStatus);
 
-        btnStartSetting.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LearnPreferenceLayout.this, Setting.class);
-                startActivity(intent);
-            }
-        });
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.setting_container, new Setting.MyPreferenceFragment())
+                .commit();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        updateButtonStatus();
+    }
+
+    private void updateButtonStatus() {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         boolean isChecked = sharedPreferences.getBoolean("background_color", false);
 
         if (isChecked) {
-            layoutMain.setBackgroundColor(getResources().getColor(android.R.color.holo_red_dark));
+            btnStatus.setText("checked = true");
         } else {
-            layoutMain.setBackgroundColor(getResources().getColor(android.R.color.holo_blue_dark));
+            btnStatus.setText("checked = false");
+        }
+    }
+
+    public static class MyPreferenceFragment extends PreferenceFragmentCompat {
+        @Override
+        public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+            setPreferencesFromResource(R.xml.preferences, rootKey);
+
+            CheckBoxPreference checkboxPreference = findPreference("background_color");
+
+            if (checkboxPreference != null) {
+                checkboxPreference.setOnPreferenceChangeListener((preference, newValue) -> {
+                    boolean isChecked = (Boolean) newValue;
+
+                    SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putBoolean("background_color", isChecked);
+                    editor.apply();
+
+                    return true;
+                });
+            }
         }
     }
 }
