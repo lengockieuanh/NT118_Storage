@@ -13,22 +13,25 @@
         android:theme="@style/Theme.NT118P21_22520047_Lab04"
         tools:targetApi="31">
         <activity
-            android:name=".SQLite"
+            android:name=".InternalStorage"
             android:exported="false" />
         <activity
             android:name=".ExternalStorage"
             android:exported="false" />
         <activity
-            android:name=".InternalStorage"
+            android:name=".SharedPreferences"
+            android:exported="false" />
+        <activity
+            android:name=".LearnPreferenceLayout"
             android:exported="false" />
         <activity
             android:name=".Setting"
             android:exported="false" />
         <activity
-            android:name=".SharedPreferences"
-            android:exported="false" /> <!-- Màn hình đầu tiên chạy app -->
+            android:name=".SQLite"
+            android:exported="false" />
         <activity
-            android:name=".LearnPreferenceLayout"
+            android:name=".SQLite2"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
