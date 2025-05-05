@@ -16,7 +16,7 @@ public class InternalStorage extends AppCompatActivity {
     private ListView listView;
     private ArrayList<String> notesList;
     private ArrayAdapter<String> adapter;
-    private int selectedIndex = -1;  // vị trí ghi chú đang chọn để sửa
+    private int selectedIndex = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -11,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Demo: Internal Storage - Ghi chú cá nhân"
+        android:textColor="#F44336"
         android:textSize="20sp"
         android:textStyle="bold"
         android:layout_gravity="center"
@@ -24,23 +25,23 @@
         android:layout_marginBottom="10dp"/>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        android:layout_gravity="center_horizontal">
 
         <Button
             android:id="@+id/btnAdd"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:text="Thêm"/>
+            android:text="Thêm"
+            android:layout_marginBottom="8dp"/>
 
         <Button
             android:id="@+id/btnUpdate"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:text="Cập nhật"/>
+            android:text="Cập nhật" />
     </LinearLayout>
 
     <ListView
