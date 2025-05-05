@@ -10,7 +10,6 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 public class LearnPreferenceLayout extends AppCompatActivity {
-
     LinearLayout layoutMain;
     Button btnStartSetting;
 
